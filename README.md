@@ -1,5 +1,6 @@
 # diploCloudGeoService
 Proyecto Diplomado Nube 2023.
+José Luis Villarreal Benítez
 
 Este microservicio (geojason service) implementa un CRUD para Reservas (Reservas Ecológicas).
 
