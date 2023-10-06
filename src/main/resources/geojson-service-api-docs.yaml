@@ -1,24 +1,24 @@
 openapi: 3.0.1
 info:
-  title: Pixup Usuario Microservice Endpoints
-  description: Definición de los Endpoints de Usuario Service para el sistema Pixup
+  title: Pixup Reservas Ecológicas Microservice Endpoints
+  description: Definición de los Endpoints de Reservas Ecológicas Service para el sistema Pixup (Pixeles)
   contact:
     name: UNAM
     url: https://www.unam.mx/
-    email: urielhdezorozco@yahoo.com.mx
+    email: josel@unam.mx
   version: v1
 servers:
 - url: http://localhost:8082
   description: Generated server url
 tags:
 - name: usuario
-  description: API del Recurso Usuario
+  description: API del Recurso Localidades
 paths:
-  /api/estados/{id}:
+  /api/reservas/{id}:
     get:
       tags:
-      - estado-controller
-      operationId: estadoPorId
+      - reserva-controller
+      operationId: reservaPorId
       parameters:
       - name: id
         in: path
@@ -43,11 +43,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Estado'
+                $ref: '#/components/schemas/Reserva'
     put:
       tags:
-      - estado-controller
-      operationId: actualizarEstado
+      - reserva-controller
+      operationId: actualizarReserva
       parameters:
       - name: id
         in: path
@@ -58,7 +58,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Estado'
+              $ref: '#/components/schemas/Reserva'
         required: true
       responses:
         "400":
@@ -78,11 +78,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Estado'
+                $ref: '#/components/schemas/Reserva'
     delete:
       tags:
-      - estado-controller
-      operationId: eliminarEstado
+      - reserva-controller
+      operationId: eliminarReserva
       parameters:
       - name: id
         in: path
@@ -104,17 +104,17 @@ paths:
                 type: string
         "200":
           description: OK
-  /api/usuarios/registro:
+  /api/localidades/registro:
     post:
       tags:
-      - usuario
-      summary: Registrar Usuario
-      operationId: registrarUsuario
+      - localidad
+      summary: Registrar Localidad
+      operationId: registrarLocalidad
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RegistroUsuarioRequest'
+              $ref: '#/components/schemas/RegistroLocalidadRequest'
         required: true
       responses:
         "400":
@@ -124,19 +124,19 @@ paths:
               schema:
                 type: string
         "409":
-          description: Ya existe un usuario con el mail especificado
+          description: Ya existe una localidad con ese número de reporte
           content: {}
         "201":
-          description: Usuario Creado Exitosamente
+          description: Localidad Creada Exitosamente
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Usuario'
-  /api/estados:
+                $ref: '#/components/schemas/Localidad'
+  /api/reservas:
     get:
       tags:
-      - estado-controller
-      operationId: obtenerEstados
+      - reserva-controller
+      operationId: obtenerReservas
       responses:
         "400":
           description: Bad Request
@@ -158,13 +158,13 @@ paths:
                 type: object
     post:
       tags:
-      - estado-controller
-      operationId: crearEstado
+      - reserva-controller
+      operationId: crearReserva
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Estado'
+              $ref: '#/components/schemas/Reserva'
         required: true
       responses:
         "400":
@@ -184,45 +184,45 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Estado'
+                $ref: '#/components/schemas/Reserva'
 components:
   schemas:
-    Estado:
+    Reserva:
       type: object
       properties:
         id:
           type: string
         nombre:
           type: string
-    Domicilio:
+    Zona:
       required:
-      - calle
-      - numExterior
+      - tipo
+      - cantidad
       type: object
       properties:
-        calle:
+        tipo:
           maxLength: 60
           minLength: 3
           type: string
-        numExterior:
+        cantidad:
           maxLength: 30
           minLength: 1
           type: string
-        numInterior:
+        numero:
           type: string
-    RegistroUsuarioRequest:
+    RegistroLocalidadRequest:
       required:
-      - domicilio
-      - usuario
+      - zona
+      - localidad
       type: object
       properties:
         usuario:
-          $ref: '#/components/schemas/Usuario'
+          $ref: '#/components/schemas/Localidad'
         domicilio:
-          $ref: '#/components/schemas/Domicilio'
+          $ref: '#/components/schemas/Zona'
     Usuario:
       required:
-      - email
+      - numReporte
       - nombre
       type: object
       properties:
@@ -230,17 +230,17 @@ components:
           type: string
         nombre:
           type: string
-        primerApellido:
+        coorX:
           type: string
-        segundoApellido:
+        coorY:
           type: string
-        password:
+        altitud:
           type: string
-        email:
+        numReporte:
           type: string
-        rfc:
+        tipoReporte:
           type: string
-        domicilios:
+        zonas:
           type: array
           items:
-            $ref: '#/components/schemas/Domicilio'
+            $ref: '#/components/schemas/Zona'
