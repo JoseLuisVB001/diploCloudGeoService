@@ -1,0 +1,246 @@
+openapi: 3.0.1
+info:
+  title: Pixup Usuario Microservice Endpoints
+  description: Definición de los Endpoints de Usuario Service para el sistema Pixup
+  contact:
+    name: UNAM
+    url: https://www.unam.mx/
+    email: urielhdezorozco@yahoo.com.mx
+  version: v1
+servers:
+- url: http://localhost:8082
+  description: Generated server url
+tags:
+- name: usuario
+  description: API del Recurso Usuario
+paths:
+  /api/estados/{id}:
+    get:
+      tags:
+      - estado-controller
+      operationId: estadoPorId
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: string
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                type: string
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Estado'
+    put:
+      tags:
+      - estado-controller
+      operationId: actualizarEstado
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Estado'
+        required: true
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: string
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                type: string
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Estado'
+    delete:
+      tags:
+      - estado-controller
+      operationId: eliminarEstado
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: string
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                type: string
+        "200":
+          description: OK
+  /api/usuarios/registro:
+    post:
+      tags:
+      - usuario
+      summary: Registrar Usuario
+      operationId: registrarUsuario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegistroUsuarioRequest'
+        required: true
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: string
+        "409":
+          description: Ya existe un usuario con el mail especificado
+          content: {}
+        "201":
+          description: Usuario Creado Exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usuario'
+  /api/estados:
+    get:
+      tags:
+      - estado-controller
+      operationId: obtenerEstados
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: string
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                type: string
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    post:
+      tags:
+      - estado-controller
+      operationId: crearEstado
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Estado'
+        required: true
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: string
+        "409":
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                type: string
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Estado'
+components:
+  schemas:
+    Estado:
+      type: object
+      properties:
+        id:
+          type: string
+        nombre:
+          type: string
+    Domicilio:
+      required:
+      - calle
+      - numExterior
+      type: object
+      properties:
+        calle:
+          maxLength: 60
+          minLength: 3
+          type: string
+        numExterior:
+          maxLength: 30
+          minLength: 1
+          type: string
+        numInterior:
+          type: string
+    RegistroUsuarioRequest:
+      required:
+      - domicilio
+      - usuario
+      type: object
+      properties:
+        usuario:
+          $ref: '#/components/schemas/Usuario'
+        domicilio:
+          $ref: '#/components/schemas/Domicilio'
+    Usuario:
+      required:
+      - email
+      - nombre
+      type: object
+      properties:
+        id:
+          type: string
+        nombre:
+          type: string
+        primerApellido:
+          type: string
+        segundoApellido:
+          type: string
+        password:
+          type: string
+        email:
+          type: string
+        rfc:
+          type: string
+        domicilios:
+          type: array
+          items:
+            $ref: '#/components/schemas/Domicilio'
