@@ -105,7 +105,7 @@ Solo regresa código 204 No contet
 
 Se usará una base de datos MongoDB externalizada.
 
-Referecia
+Referencia
 
 Mongo Docker Official Image: https://hub.docker.com/_/mongo
 
