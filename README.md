@@ -101,4 +101,11 @@ DELETE http://localhost:8082/reservas/652889108a3db6307abdd856
 
 Solo regresa código 204 No contet
 
+##Dependencias
+
+Se usará una base de datos MongoDB externalizada.
+
+Referecia
+
+Mongo Docker Official Image: https://hub.docker.com/_/mongo
 
