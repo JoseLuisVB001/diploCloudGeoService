@@ -28,91 +28,77 @@ Deploy
 
 Test (en POSTMAN)
 
-POST http://localhost:8082/reservas/json
+POST http://localhost:8082/reservas
 
 {
-
-  "nombre": "string"
-  
+    "nombre": "Racho El Cielo"
 }
 
 Responde con el JSON enviado, con un id creado automáticamnete.
 
 {
-
-  "id": "string",
-  
-  "nombre": "string"
-  
+    "id": "652893cda5a12b50463765ff",
+    "nombre": "Racho El Cielo"
 }
 
 
-GET http://localhost:8082/reservas/
+GET http://localhost:8082/reservas
 
 Regresa todos las reservas en la base de datos como un arreglo
 
 [
-
-  {
-  
-    "id": "string",
-    
-    "nombre": "string"
-    
-  },
-  
-  ...
-  
+    {
+        "id": "651e58334a1b18695382c99b",
+        "nombre": "Los Tuxtlas"
+    },
+    {
+        "id": "651e5cd909438c7579e3283f",
+        "nombre": "Chamela"
+    },
+    {
+        "id": "651e5ce409438c7579e32840",
+        "nombre": "Montes Azules"
+    },
+    {
+        "id": "652889108a3db6307abdd856",
+        "nombre": "Bolsón de Mapimí"
+    },
+    {
+        "id": "652893cda5a12b50463765ff",
+        "nombre": "Racho El Cielo"
+    }
 ]
 
 
+Toma un id del GET y sustitúyelo en {id}
 
-Toma u id del GET y sustitúyelo en {id}
-
-GET http://localhost:8082/reservas/{id}
+GET http://localhost:8082/reservas/652893cda5a12b50463765ff
 
 Respuesta esperada
 
 {
-
-  "id": "string",
-  
-  "nombre": "string"
-  
+    "id": "652893cda5a12b50463765ff",
+    "nombre": "Racho El Cielo"
 }
 
 Indica el cambio en el nombre para el id seleccioado
 
-PUT http://localhost:8082/reservas/json
+PUT http://localhost:8082/reservas/652893cda5a12b50463765ff
 
 {
-
-  "id": "string",
-  
-  "nombre": "string"
-  
+  "nombre": "Rancho el Cielo"
 }
 
 Regresa el JSON con el cambio realizado
 
 {
-
-  "id": "string",
-  
-  "nombre": "string"
-  
+    "id": "652893cda5a12b50463765ff",
+    "nombre": "Rancho El Cielo"
 }
 
 
-DELETE http://localhost:8082/reservas/{id}
+DELETE http://localhost:8082/reservas/652889108a3db6307abdd856
 
-{
-
-  "id": "string",
-  
-}
-
-
-Solo regresa código 100
+Solo regresa código 204 No contet
 
 
