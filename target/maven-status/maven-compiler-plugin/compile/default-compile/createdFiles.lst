@@ -1,0 +1,7 @@
+gis/cloud/pixup/geojsonservice/service/ReservaServiceImpl.class
+gis/cloud/pixup/geojsonservice/repository/ReservaRepository.class
+gis/cloud/pixup/geojsonservice/config/OpenApiConfig.class
+gis/cloud/pixup/geojsonservice/api/ReservaController.class
+gis/cloud/pixup/geojsonservice/domain/Reserva.class
+gis/cloud/pixup/geojsonservice/service/ReservaService.class
+gis/cloud/pixup/geojsonservice/GeoJSONServiceApplication.class
