@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloud-usuario-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: cloud-usuario-service
+  template:
+    metadata:
+      labels:
+        app: cloud-usuario-service
+    spec:
+      containers:
+        - name: cloud-usuario-service-container
+          image: joseluisvb/cloud-usuario-service:v2.1
+          ports:
+            - containerPort: 87
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cloud-usuario-service
+spec:
+  selector:
+    app: cloud-usuario-service
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 87
+  type: ClusterIP
