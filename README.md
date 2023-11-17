@@ -105,6 +105,19 @@ Solo regresa código 204 No contet
 
 Se usará una base de datos MongoDB externalizada.
 
+Estrategia de ramas Git
+
+Se configura y establece la estrategia de ramas en GitHub para la ejecución de un proyecto con un líder y 6 colaboradores desarrolladores. Para ello se propone:
+
+a)	Una rama  release para publicar y resguardar las versiones de la secuencia de liberaciones.
+b)	Una rama main para almacenar el historial de publicación oficial, sobre la cual se deberá etiquetar todas las confirmaciones co un número de versión.
+c)	Una rama dev o de desarrollo para integrar las funciones, la cual debe bifurcar a la rama release.
+d)	Una rama de corrección hotfix que se bifurcará directamente de la rama main y la cual se debe fusionar con la rama main una vez que se alcanzó la corrección.
+e)	Tres ramas feature que utilizarán la rama dev como rama primaria y sobre las cuales se coordinarán las nuevas funciones designadas a los diferentes desarrolladores; esto es, la rama dev y las ramas feature conforman el flujo de trabajo de ramas de función. Estas ramas serán coordinadas por los seis desarrolladores trabajando en parejas.
+
+![image](https://github.com/JoseLuisVB001/diploCloudGeoService/assets/117409168/5242e9e4-acd5-4892-8a21-92feff2e2e8b)
+
+
 Referencia
 
 Mongo Docker Official Image: https://hub.docker.com/_/mongo
