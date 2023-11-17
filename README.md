@@ -34,6 +34,8 @@ POST http://localhost:8082/reservas
     "nombre": "Racho El Cielo"
 }
 
+Se agragó un Test en la rama "dev"
+
 Responde con el JSON enviado, con un id creado automáticamnete.
 
 {
