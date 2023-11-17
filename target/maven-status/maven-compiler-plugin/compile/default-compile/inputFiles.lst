@@ -1,7 +1,0 @@
-/home/clouduser/Downloads/ProyectoM3/diploCloudGeoService/src/main/java/gis/cloud/pixup/geojsonservice/domain/Reserva.java
-/home/clouduser/Downloads/ProyectoM3/diploCloudGeoService/src/main/java/gis/cloud/pixup/geojsonservice/config/OpenApiConfig.java
-/home/clouduser/Downloads/ProyectoM3/diploCloudGeoService/src/main/java/gis/cloud/pixup/geojsonservice/GeoJSONServiceApplication.java
-/home/clouduser/Downloads/ProyectoM3/diploCloudGeoService/src/main/java/gis/cloud/pixup/geojsonservice/service/ReservaService.java
-/home/clouduser/Downloads/ProyectoM3/diploCloudGeoService/src/main/java/gis/cloud/pixup/geojsonservice/service/ReservaServiceImpl.java
-/home/clouduser/Downloads/ProyectoM3/diploCloudGeoService/src/main/java/gis/cloud/pixup/geojsonservice/repository/ReservaRepository.java
-/home/clouduser/Downloads/ProyectoM3/diploCloudGeoService/src/main/java/gis/cloud/pixup/geojsonservice/api/ReservaController.java
