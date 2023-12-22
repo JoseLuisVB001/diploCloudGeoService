@@ -25,8 +25,7 @@ Instrucciones para ejecutar el proyecto
 
 Deploy
 
-//TODO -- José Luis Villarreal Benítez
-
+//TODO
 
 Test (en POSTMAN)
 
