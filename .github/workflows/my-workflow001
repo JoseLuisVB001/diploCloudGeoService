@@ -16,7 +16,7 @@ on:
 
 # defaults:
 #   run:
-#     working-directory: manifests/
+#     working-directory: src/
 
 jobs:
   deploy:
