@@ -47,5 +47,5 @@ jobs:
           
       - name: Build and Deploy to OpenShift
         run: |
-          oc project tekton-demo
-          oc apply -f ./manifests/notificaciones.yaml
+          oc project user19
+          oc apply -f ./src/README.md
