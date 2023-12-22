@@ -24,7 +24,6 @@ Instrucciones para ejecutar el proyecto
 Deploy
 
 //TODO
-//Prueba Triggers
 
 
 Test (en POSTMAN)
