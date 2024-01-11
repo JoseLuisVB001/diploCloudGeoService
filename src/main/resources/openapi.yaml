@@ -8,7 +8,7 @@ info:
     email: josel@unam.mx
   version: v1
 servers:
-- url: http://localhost:8080
+- url: http://localhost:8081
 tags:
 - name: notificacion
   description: API del Recurso Notificacion
