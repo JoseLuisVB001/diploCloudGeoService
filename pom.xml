@@ -109,7 +109,7 @@
 								</additionalProperty>
 							</additionalProperties>
 							<inputSpec>
-								/src/main/resources/openapi.yaml
+								${project.basedir}/src/main/resources/openapi.yaml
 							</inputSpec>
 							<generatorName>spring</generatorName>
 							<apiPackage>unam.diplomado.pixup.notificacionservice.api</apiPackage>
