@@ -7,7 +7,7 @@ FROM docker.io/khipu/openjdk17-alpine:latest
 WORKDIR /app
 
 # Copy the JAR file from the target directory into the container
-COPY targer/geojson-service-0.0.1-SNAPSHOT.jar /app/app.jar
+COPY target/geojson-service-0.0.1-SNAPSHOT.jar /app/app.jar
 
 # Expose the port that your Spring Boot application will listen on
 EXPOSE 8081
