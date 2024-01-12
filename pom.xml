@@ -40,7 +40,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+		<!--
 		<!-- openapi-generator dependencies -->
 		<dependency>
 			<groupId>javax.annotation</groupId>
@@ -92,7 +92,7 @@
 					</excludes>
 				</configuration>
 			</plugin>
-			<!--
+			
 			<plugin>
 				<groupId>org.openapitools</groupId>
 				<artifactId>openapi-generator-maven-plugin</artifactId>
