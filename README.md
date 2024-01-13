@@ -23,11 +23,89 @@ Instrucciones para ejecutar el proyecto
 
 
 
-Deploy
+# Deploy
 
-//TODO José Luis
+Creación de la imagen
+Esta imagene está basada en arm64/jdk-17 para Mac OS.
 
-Test (en POSTMAN)
+La especificación completa de la imagen que contiene la aplicación se encuentra en el Dockerfile.
+
+Construcción (Building) de la imagen.
+
+La imagen se construye usando docker o podman.
+
+podman build -t joseluisvb/diploCloudGeoService:1.0 .
+
+¡Advertencia!
+
+No olvide usar su cuenta de Hub para crear las etiquetas o Tags de la imagen.
+
+# Para correr la aplicación
+
+podman run -p 8081:8081 joseluisvb/diploCloudGeoService:1.0
+
+# Tasks & Pipelines
+
+This project use Tekton as CI/CD tool. Common commands used for the automatism:
+
+Git clone repository
+
+tkn task start git-clone \
+--param=url=https://github.com/urielhdez/diploCloudGeoService \
+--param=deleteExisting="true" \
+--workspace=name=output,claimName=shared-workspace \
+--showlog
+
+List directory
+
+tkn task start list-directory \
+--workspace=name=directory,claimName=shared-workspace \
+--showlog
+
+Build source code
+
+tkn task start maven \
+--param=GOALS="-B,-DskipTests,clean,package" \
+--workspace=name=source,claimName=shared-workspace \
+--workspace=name=maven-settings,config=maven-settings \
+--showlog
+
+Para los proyectos Java que usen el JDK 17, recomendamos hacer uso de esta imagen maven que te permitirá llevar a cabo la compilación, tendrás que proporcionar el párametro MAVEN_IMAGE con el siguiente valor: gcr.io/cloud-builders/maven:3.6.3-openjdk-17@sha256:c74c4d8f7b470c2c47ba3fcb7e33ae2ebd19c3a85fc78d7b40c8c9a03f873312
+
+Build image
+
+tkn task start buildah \
+--param=IMAGE="docker.io/joseluisvb/diploCloudGeoService:v3" \
+--param=TLSVERIFY="false" \
+--workspace=name=source,claimName=shared-workspace \
+--serviceaccount=tekton-pipeline \
+--showlog
+
+Deployment
+
+tkn task start kubernetes-actions \
+--param=script="kubectl apply -f https://raw.githubusercontent.com/brightzheng100/tekton-pipeline-example/master/manifests/deployment.yaml; kubectl get deployment;" \
+--workspace=name=kubeconfig-dir,emptyDir=  \
+--workspace=name=manifest-dir,emptyDir= \
+--serviceaccount=tekton-pipeline \
+--showlog
+
+Integrated pipeline
+
+tkn pipeline start pipeline-git-clone-build-push-deploy \
+-s tekton-pipeline \
+--param=repo-url=https://github.com/joseluisvb001/diploCloudGeoService \
+--param=tag-name=main \
+--param=image-full-path-with-tag=docker.io/joseluisvb/
+--param=deployment-manifest=https://raw.githubusercontent.com/brightzheng100/tekton-pipeline-example/master/manifests/deployment.yaml \
+--workspace=name=workspace,claimName=shared-workspace \
+--workspace=name=maven-settings,config=maven-settings \
+--showlog
+
+Para más detalles sobre el uso de tekton en el proyecto, puede visitar la secciñon maifest.
+
+
+# Test (en POSTMAN)
 
 POST http://localhost:8082/reservas
 
@@ -119,7 +197,17 @@ e)	Tres ramas feature que utilizarán la rama dev como rama primaria y sobre las
 ![image](https://github.com/JoseLuisVB001/diploCloudGeoService/assets/117409168/5242e9e4-acd5-4892-8a21-92feff2e2e8b)
 
 
-Referencia
+# Referencias
 
 Mongo Docker Official Image: https://hub.docker.com/_/mongo
+
+Official Apache Maven documentation
+
+Spring Boot Maven Plugin Reference Guide
+
+Create an OCI image
+
+Spring Web
+
+Spring Data MongoDB
 
