@@ -3,7 +3,7 @@ Proyecto Diplomado Nube 2023.
 
 José Luis Villarreal Benítez
 
-UNAM
+DGTIC - UNAM
 
 Este microservicio (geojason service) implementa un CRUD para Reservas (Reservas Ecológicas).
 
