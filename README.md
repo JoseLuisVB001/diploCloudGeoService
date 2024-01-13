@@ -215,5 +215,5 @@ Spring Web
 
 Spring Data MongoDB
 
-> cafaray: ___Project revision.___
+> cafaray: __Project revision.__
 
