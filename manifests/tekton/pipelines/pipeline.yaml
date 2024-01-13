@@ -1,0 +1,19 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: git-clone-maven-
+spec:
+  serviceAccountName: tekton-pipeline
+  pipelineRef:
+    name: git-clone-maven
+  params:
+  - name: repo-url
+    value: https://github.com/joseluisvb001/diploCloudGeoService.git
+  - name: tag-name
+    value: master
+  workspaces:
+  - name: workspace
+    persistentvolumeclaim:
+      claimName: shared-workspace
+  - name: empty-dir
+    emptyDir: {}
